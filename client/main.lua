@@ -304,7 +304,7 @@ function CheckOwnership()
                     local ped = PlayerPedId()
                     local playercoords = GetEntityCoords(ped)
                     local dst = GetDistanceBetweenCoords(playercoords, almez[i].info.coords, 0)
-                    if dst <= 100.0 then                        
+                    if dst <= 2.5 then                        
                         if almez[i].doors[x].obj == nil or not DoesEntityExist(almez[i].doors[x].obj) then
                             almez[i].doors[x].obj = GetClosestObjectOfType(almez[i].doors[x].coords, 1.2, almez[i].doors[x].doorhash, 0, 0, 0)
                             FreezeEntityPosition(almez[i].doors[x].obj, almez[i].doors[x].locked)
@@ -318,7 +318,7 @@ function CheckOwnership()
                     end
                 end
             end
-            Citizen.Wait(100)
+            Citizen.Wait(1000)
         end
     end)
 end
@@ -331,10 +331,10 @@ function MenuCheck()
                 local ped = PlayerPedId()
                 local playercoords = GetEntityCoords(ped)
                 local dst = GetDistanceBetweenCoords(playercoords, Cfg.ReceptionLocation.x, Cfg.ReceptionLocation.y, Cfg.ReceptionLocation.z, 1)
-                if dst <= 10.0 then
+                if dst <= 1.5 then
                     sleep = false
                 end
-                if dst <= 5.0 then
+                if dst <= 1.5 then
                     DrawMarker(27, Cfg.ReceptionLocation.x, Cfg.ReceptionLocation.y, Cfg.ReceptionLocation.z - 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.8, 0.8, 0.8, 255, 0, 0, 155, 0, 0, 2, 0, 0, 0, 0, 0)
                 end
                 
@@ -348,13 +348,13 @@ function MenuCheck()
             if sleep == true then
                 Citizen.Wait(1000)
             else
-                Citizen.Wait(0)
+                Citizen.Wait(5)
             end
         end
     end)
 end
-                              --[TR] Kapılarda oda numarası yazmasını istiyorsanız () içine motelidqb yazın.    
-function DrawTexts(motelidqb) --[EN] If you want it to write the room number on the doors, write motelidqb in ()
+                              --<<< [TR] Kapılarda oda numarası yazmasını istiyorsanız () içine motelidqb yazın.    
+function DrawTexts(motelidqb) --<<< [EN] If you want it to write the room number on the doors, write motelidqb in ()
     Citizen.CreateThread(function()
         while true do
             local sleep = 1
